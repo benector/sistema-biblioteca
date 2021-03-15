@@ -1,0 +1,14 @@
+.navigation {
+  background-color: black;
+  color: white;
+  top: 1;
+}
+
+.white-sidebar {
+  background-color: white !important;
+}
+
+[class*=sidebar-blue] {
+  background-color: #7acbcd;
+}
+

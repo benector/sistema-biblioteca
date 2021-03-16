@@ -8,23 +8,36 @@
             @else
             <img class="card-img-top" 
               style="max-width:100%;margin-bottom:1rem" 
-              src="{{asset('storage/'.$work->img)}}" alt="Card image cap">
+              src="{{asset('storage/'.$work->img) }}" alt="Card image cap">
             @endif
     <!--<h5 class="card-title">Curso: </h5>-->
        
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Titulo</strong> {{$work->title}}
                 </li>
-                <li class="list-group-item"><strong>Categoria:</strong> {{$work->category}}</li>
+                <li class="list-group-item"><strong>Categoria:</strong> {{$work->category->name}}</li>
+                <li class="list-group-item"><strong>Assunto:</strong> {{$work->subject->name}}</li>
                 <li class="list-group-item"><strong>Nº páginas:</strong> {{$work->pages}}</li>
+                <li class="list-group-item"><strong>Ano:</strong> {{$work->year}}</li>
+                <li class="list-group-item"><strong>Edição:</strong> {{$work->edition}}</li>
 
             
 
               <ul>
         </div>
-        <div class="col-sm">
-        <strong>Sinopse:</strong> 
-              {!! $work->resume!!}    
+        <div class="col-sm ">
+          <div class="row">
+          <strong>Sinopse:</strong> 
+                {!! $work->resume!!}   
+          </div> 
+          <div class="row mt-5 d-flex justify-content-center align-items-center">
+          <a href="{{ route('works.edit', $work->id) }}">
+                <button type="button" class="btn btn-primary">
+                  <b>Editar</b>
+                </button>
+          </a>
+          </div>
+     
         </div>
     </div>
 

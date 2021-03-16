@@ -24,5 +24,7 @@ Route::middleware('auth')->group(function(){
     Route::resource('/categories', 'CategoryController');
     Route::resource('/courses', 'CourseController');
     Route::resource('/works', 'WorkController');
+    Route::resource('/subjects', 'SubjectController');
+
 
 });

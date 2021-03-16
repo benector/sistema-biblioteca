@@ -49,10 +49,19 @@
 						</a>
 					</li>
 					<li class="nav-item has-treeview ">
-						<a href="{{ route('courses.index') }}"
-							class="nav-link {{ Route::is('courses.index') ? 'active' : '' }}">
+						<a href="{{ route('subjects.index') }}"
+							class="nav-link {{ Route::is('subjects.index') ? 'active' : '' }}">
+							<i class="nav-icon fas fa-list-ul"></i>
+							<p>
+								Assuntos
+							</p>
+						</a>
+					</li>
+					<li class="nav-item has-treeview ">
+						<a href="{{ route('works.index') }}"
+							class="nav-link {{ Route::is('works.index') ? 'active' : '' }}">
 							<i class="nav-icon fas fa-book-open"></i>							<p>
-								Cursos
+								Livros
 							</p>
 						</a>
 					</li>

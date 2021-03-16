@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Work;
+
 
 class Category extends Model
 {
@@ -10,7 +12,7 @@ class Category extends Model
         'name'
     ];
 
-    public function courses(){
+    public function works(){
         return $this->hasMany (Work::class);
     }
     public $timestamps = false;

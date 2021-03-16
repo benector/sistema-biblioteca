@@ -6,7 +6,7 @@
 @endsection 
 @section('content')
     @component('admin.components.create')
-        @slot('title', 'Cadastrar um curso')
+        @slot('title', 'Cadastrar uma obra')
         @slot('url', route('works.store'))
         @slot('form')
             @include('admin.works.form')

@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class SubjectController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +15,12 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //
+        //dd(Auth::user()->id);
+        $subjects= Subject::all();
+        return view('admin.subjects.index',[
+            'subjects' => $subjects,
+            'user' => Auth::user(),
+        ]);
     }
 
     /**
@@ -24,7 +30,8 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        $subject = new subject();
+        return view('admin.subjects.create',compact('subject'));
     }
 
     /**
@@ -35,7 +42,11 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // dd($request->user()->id);
+        Subject::create($request->all());
+        return redirect()->route('subjects.index')->with(
+            ['user_creating_now','success'],
+            [1, true]);
     }
 
     /**
@@ -44,9 +55,10 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(Subject $subject)
+    public function show(subject $subject)
     {
-        //
+        return view('admin.subjects.show',compact('subject'));
+        
     }
 
     /**
@@ -55,9 +67,10 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subject $subject)
+    public function edit(subject $subject)
     {
-        //
+        return view('admin.subjects.edit',compact('subject'));
+        
     }
 
     /**
@@ -67,9 +80,11 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subject $subject)
+    public function update(Request $request, subject $subject)
     {
-        //
+        $subject->update($request->all());
+        return redirect()->route('subjects.index')->with('success',true);
+
     }
 
     /**
@@ -78,8 +93,9 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subject $subject)
+    public function destroy(subject $subject)
     {
-        //
+        $subject->delete();
+        return redirect()->route('subjects.index')->with('success',true);
     }
 }

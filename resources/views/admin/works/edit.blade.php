@@ -6,8 +6,8 @@
 @endsection 
 @section('content')
     @component('admin.components.edit')
-        @slot('title', 'Editar ' . $work->name)
-        @slot('url', route('works.update', $work->slug))
+        @slot('title', 'Editar ' . $work->title)
+        @slot('url', route('works.update', $work->id))
         @slot('form')
             @include('admin.works.form')
         @endslot

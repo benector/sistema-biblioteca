@@ -21,23 +21,23 @@ class CreateWorksTable extends Migration
             $table->longText('resume');
             $table->integer('pages');
             $table->string('img');
-            $table->dateTime('ano');
+            $table->smallInteger('year');
             $table->timestamps();
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('subject_id');
 
 
 
-            // $table->foreign('category_id')
-            // ->references('id')
-            // ->on('categories')
-            // ->onDelete('cascade');
+            $table->foreign('category_id')
+            ->references('id')
+            ->on('categories')
+            ->onDelete('cascade');
 
             
-            // $table->foreign('subject_id')
-            // ->references('id')
-            // ->on('subjects')
-            // ->onDelete('cascade');
+            $table->foreign('subject_id')
+            ->references('id')
+            ->on('subjects')
+            ->onDelete('cascade');
 
         });
     }

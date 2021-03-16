@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 use App\Work;
 use Illuminate\Http\Request;
+use App\Category;
+use App\Subject;
+
 
 class WorkController extends Controller
 {
@@ -43,7 +49,21 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $user_id = $request->user()->id;
+        $data = $request->all();
+        $work_image = $request->file('img');
+        $extension = $work_image->getClientOriginalExtension();
+        $filename = uniqid ( time () ) . '.' . $extension ;
+        $data['img'] = $filename;
+        $work = Work::create( $data);
+
+        // $user = $request->user();
+        // $user->courses()->save($work);
+        
+        //dd($work);
+        Storage::disk('public')->put($filename,  File::get($work_image));
+            return redirect()->route('works.index')->with('success',true);
+        
     }
 
     /**
@@ -84,33 +104,24 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
+        $data = $request->all();
+    
         if ($request->hasFile('img')) {
             $work_image = $request->file('img');
             $work_old_image = $request->old_img;
             $extension = $work_image->getClientOriginalExtension();
             $filename = uniqid ( time () ) . '.' . $extension ;
 
-            $work->update( 
-            ['name' => $request->name,
-            'description' => $request->description,
-            'slug' => $this->convert_slug($request->slug),
-            'category_id' => $request->category_id,
-            'video' => $this->convert_url($request->video),
-            'img' => $filename
-            ]
-            );
+            $data['img'] = $filename;
+
+            $work->update( $data);
 
             Storage::disk('public')->put($filename,  File::get($work_image));
             Storage::delete($work_old_image);
             return redirect()->route('works.index')->with('success',true);
 
         }else{
-            $work->update( 
-                ['name' => $request->name,
-                'description' => $request->description,
-                'slug' => $this->convert_slug($request->slug),
-                'category_id' => $request->category_id,
-                'video' => $this->convert_url($request->video)]);
+            $work->update($data);
                 return redirect()->route('works.index')->with('success',true);
  
         }
@@ -124,6 +135,7 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $work->delete();
+        return redirect()->route('works.index')->with('success',true);
     }
 }

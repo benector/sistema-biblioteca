@@ -106498,9 +106498,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Beatriz\Desktop\UFJF\Modelagem de Sistemas\biblioteca\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\Beatriz\Desktop\UFJF\Modelagem de Sistemas\biblioteca\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\Beatriz\Desktop\UFJF\Modelagem de Sistemas\biblioteca\resources\sass\styles.scss */"./resources/sass/styles.scss");
+__webpack_require__(/*! C:\Users\Beatriz\Desktop\UFJF\Modelagem de Sistemas\sistema-biblioteca\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\Beatriz\Desktop\UFJF\Modelagem de Sistemas\sistema-biblioteca\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\Beatriz\Desktop\UFJF\Modelagem de Sistemas\sistema-biblioteca\resources\sass\styles.scss */"./resources/sass/styles.scss");
 
 
 /***/ })

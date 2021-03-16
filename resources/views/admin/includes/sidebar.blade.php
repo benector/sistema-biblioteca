@@ -22,9 +22,9 @@
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item has-treeview ">
 					<a href="/" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
-						<i class="nav-icon fas fa-tachometer-alt"></i>
+					<i class="nav-icon fas fa-book"></i>							<p>
 						<p>
-							Dashboard
+							Acervo
 						</p>
 					</a>
 				</li>
@@ -60,8 +60,8 @@
 					<li class="nav-item has-treeview ">
 						<a href="{{ route('works.index') }}"
 							class="nav-link {{ Route::is('works.index') ? 'active' : '' }}">
-							<i class="nav-icon fas fa-book-open"></i>							<p>
-								Livros
+							<i class="nav-icon fas fa-book"></i>							<p>
+								Obras
 							</p>
 						</a>
 					</li>

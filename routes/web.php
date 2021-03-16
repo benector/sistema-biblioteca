@@ -15,11 +15,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::middleware('auth')->group(function(){
-    Route::get('/', function () {
-        return view('admin.layouts.app');
-
-    })->name('dashboard');
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('/subjects', 'SubjectController');
+    Route::get('/', 'CollectionController@index')->name('home');
+    Route::post('collection/search', 'CollectionController@search')->name('search');
     Route::resource('/users','UserController');
     Route::resource('/categories', 'CategoryController');
     Route::resource('/courses', 'CourseController');

@@ -40,7 +40,7 @@
         <label for="subject" class="required" >Assunto </label>
         @if(Route::is('works.edit'))
         <select name="subject_id" id="subject_id" class="form-control select2">
-            <option value="{{$work->category->id}}">
+            <option value="{{$work->subject->id}}">
                     {{$work->subject->name}}
             </option>
             @foreach ($subjects as $subject)

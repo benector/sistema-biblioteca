@@ -5,6 +5,8 @@
 use App\Work;
 use App\Category;
 use App \Subject;
+use App \Exemplary;
+
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -26,3 +28,7 @@ $factory->define(Work::class, function (Faker $faker) {
 
     ];
 });
+
+// $factory->afterCreating(Work::class, function ($work, Faker $faker) {
+//     $work->exemplaries()->save(factory(App\Exemplary::class)->make());
+// });

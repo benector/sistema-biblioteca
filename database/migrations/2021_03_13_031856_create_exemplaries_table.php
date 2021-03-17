@@ -16,12 +16,12 @@ class CreateExemplariesTable extends Migration
         Schema::create('exemplaries', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer("code");
+            $table->unsignedBigInteger("code");
             $table->unsignedBigInteger('work_id');
-            // $table->foreign('work_id')
-            // ->references('id')
-            // ->on('works')
-            // ->onDelete('cascade');
+            $table->foreign('work_id')
+            ->references('id')
+            ->on('works')
+            ->onDelete('cascade');
         });
     }
 

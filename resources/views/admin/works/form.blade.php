@@ -82,7 +82,7 @@
             <label for="img" autofocus value="{{ old('img', $work->img )}}">Imagem </label>
             <div>
                 <input type="hidden" name="old_img" value = "{{$work->img}}">
-                <img style="max-width:50%"
+                <img style="max-width:40%"
                 src="{{$work->img}}"
                 />
             </div>
@@ -90,18 +90,16 @@
             <label for="img" autofocus value="{{ old('img', $work->img )}}">Imagem </label>
             <div>
                 <input type="hidden" name="old_img" value = "{{$work->img}}">
-                <img style="max-width:50%"
-                src="{{asset('storage/'.$work->img)}}" 
+                <img style="max-width:40%"
+                src="{{asset('images/'.$work->img)}}" 
                 />
-            </div> <img class="card-img-top" 
-              style="max-width:100%;margin-bottom:1rem" 
-              src="{{asset('storage/'.$work->img) }}" alt="Card image cap">
+            </div> 
             @endif
         
             <div style="margin-top:1rem">
                      <p>Nova imagem</p>
                 <input type="file" name="img" class="form-control-file" accept="image/*" onchange="loadFile(event)">
-                <img style="max-width:50%" id="output"/>
+                <img style="max-width:40%" id="output"/>
                 @push('scripts')
                     <script>
                         var loadFile = function(event) {

@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
     <div class="header-collection mb-5" style = "text-align:center">
-        <h1 class="mb-5"> Acervo</h1>
+        <h1 class="mb-5 text-bold" style="color: #004aad"> Acervo</h1>
         <form id="form-buscar" action="{{route('search')}}" method="post" enctype="multipart/form-data">
             @csrf
 
@@ -11,7 +11,7 @@
                         Título da obra
 
                         <div>
-                            <input type="text" name="title" class="text w-90"/>
+                            <input type="text" name="title" class="text w-90" style="outline:none;border: 1px solid #ced4da;    "/>
                             <button type="submit" form="form-buscar" class="btn btn-primary">Buscar</button>
                         </div>
                         </div>
@@ -32,14 +32,14 @@
                     <div class="col-sm">
                         Assunto: 
                         <select name="subject_id" id="subject_id" class="form-control select2">
-                        <option value = -1>
-                            Escolha um assunto
-                            </option>
-                        @foreach ($subjects as $subject)
-                            <option value="{{$subject->id}}">
-                                {{$subject->name}}
-                            </option>
-                        @endforeach
+                            <option value = -1>
+                                Escolha um assunto
+                                </option>
+                            @foreach ($subjects as $subject)
+                                <option value="{{$subject->id}}">
+                                    {{$subject->name}}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                  
@@ -65,10 +65,10 @@
             @endisset
 
             @isset($category_id)
-                - categoria {{ $category_id-> name }} 
+                - categoria {{ $category_id->name }} 
             @endisset
             @isset($subject_id)
-                - assunto {{ $subject_id -> name}}
+                - assunto {{ $subject_id->name}}
             @endisset
             
             </p>
@@ -84,24 +84,27 @@
 
     </div>
 
-    <div class="card-columns">
+    <div class="container">
+        <div class="row">
     @foreach ($works as $work)
-        <div class="card h-100" style="background-color: transparent;border:none;text-align:center">
+        <div class="col-md-4 py-2">
+        <div class="card " style="background-color: transparent;border:none;text-align:center;">
             @if(strstr($work->img, '://'))
-                <img class="card-img-top w-50" src={{$work->img}} alt="Card image cap">
+                <img class="card-img-top w-50 mx-auto " src={{$work->img}} alt="Card image cap">
 
             @else
-            <img class="card-img-top w-50" src="{{asset('storage/' .$work->img)}}" alt="Card image cap">
-
+            <img class="card-img-top w-50 mx-auto " src="{{asset('images/' .$work->img)}}" alt="Card image cap">
 
             @endif
-            <div class="card-body" >
+            <div class="card-body h-100" >
                 <h5 class="card-title" style="float:none"><b>{{$work->title}}</b></h5>
-                <p class="card-text">Autor(es): {{$work->authors}}</p>
+                <p class="card-text mt-2"><span class=" text-bold" style="color: #004aad"> Autor(es):</span> {{$work->authors}}</p>
                 <a href="{{route('works.show', $work->id)}}" class="btn btn-primary">Visitar</a>
             </div>
         </div>
+        </div>
      @endforeach
+     </div>
     </div>
 
 

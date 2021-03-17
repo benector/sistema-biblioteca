@@ -22,23 +22,13 @@
 			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 				<li class="nav-item has-treeview ">
 					<a href="/" class="nav-link {{ Route::is('dashboard') ? 'active' : '' }}">
-					<i class="nav-icon fas fa-book"></i>							<p>
+					<i class="nav-icon fas fa-book-open"></i>							<p>
 						<p>
 							Acervo
 						</p>
 					</a>
 				</li>
-				@can('viewAny', App\User::class)
-					<li class="nav-item has-treeview ">
-						<a href="{{ route('users.index') }}"
-							class="nav-link {{ Route::is('users.index') ? 'active' : '' }}">
-							<i class="nav-icon fas fa-users"></i>
-							<p>
-								Usuários
-							</p>
-						</a>
-					</li>
-				@endcan
+			
 					<li class="nav-item has-treeview ">
 						<a href="{{ route('categories.index') }}"
 							class="nav-link {{ Route::is('categories.index') ? 'active' : '' }}">
@@ -51,7 +41,7 @@
 					<li class="nav-item has-treeview ">
 						<a href="{{ route('subjects.index') }}"
 							class="nav-link {{ Route::is('subjects.index') ? 'active' : '' }}">
-							<i class="nav-icon fas fa-list-ul"></i>
+							<i class="nav-icon fas fa-globe"></i>
 							<p>
 								Assuntos
 							</p>
@@ -61,10 +51,21 @@
 						<a href="{{ route('works.index') }}"
 							class="nav-link {{ Route::is('works.index') ? 'active' : '' }}">
 							<i class="nav-icon fas fa-book"></i>							<p>
-								Obras
+								Obras & Exemplares
 							</p>
 						</a>
 					</li>
+					@can('viewAny', App\User::class)
+					<li class="nav-item has-treeview ">
+						<a href="{{ route('users.index') }}"
+							class="nav-link {{ Route::is('users.index') ? 'active' : '' }}">
+							<i class="nav-icon fas fa-users"></i>
+							<p>
+								Usuários
+							</p>
+						</a>
+					</li>
+				@endcan
 			</ul>
 		</nav>
 	</div>

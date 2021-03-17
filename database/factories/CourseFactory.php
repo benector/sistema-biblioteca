@@ -22,7 +22,4 @@ use Faker\Provider\Youtube;
     ];
     });
 
-    $factory->afterCreating(Course::class, function ($course, Faker $faker) {
-        $course->users()->save(factory(App\User::class)->make());
-    });
-   
+    

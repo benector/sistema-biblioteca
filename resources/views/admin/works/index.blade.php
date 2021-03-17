@@ -15,6 +15,8 @@
                         <td>{{ $work->title }}</td>
                         <td>{{ $work->category->name }}</td>
                         <td class="options">
+                                <a href="{{ route('workExemplaries', $work->id ) }}" class="btn btn-warning"><i class="fas fa-copy"></i> Exemplares</a>
+
                                 <a href="{{ route('works.edit', $work->id) }}" class="btn btn-primary"><i class="fas fa-pen"></i></a>
                                 <a href="{{ route('works.show', $work->id ) }}" class="btn btn-dark"><i class="fas fa-search"></i></a>
                                 <form action="{{ route('works.destroy', $work->id) }}" class="form-delete" method="post">

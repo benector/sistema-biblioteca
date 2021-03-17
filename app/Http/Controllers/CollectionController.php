@@ -24,8 +24,6 @@ class CollectionController extends Controller
 
     public function search(Request $request)
     {
-        // dd($request->all());
-
         $categories = Category::all();
         $subjects = Subject::all();
 
@@ -33,8 +31,8 @@ class CollectionController extends Controller
         {
             $works = DB::table('works')
             ->where('title', 'like', '%'. $request->title .'%')
-            ->where('category_id', '=', $request->category)
-            ->where('subject_id', '=', $request->subject)
+            ->where('category_id', '=', $request->category_id)
+            ->where('subject_id', '=', $request->subject_id)
             ->get();
             $title = $request['title'];
             $category_id = Category::find($request['category_id']);
@@ -64,7 +62,7 @@ class CollectionController extends Controller
             }
         }else if(($request['subject_id'] != -1) )
         {
-            $subject_id = Subject::find($request['subjecty_id']);
+            $subject_id = Subject::find($request['subject_id']);
 
             if($request['title']!= null)
             {

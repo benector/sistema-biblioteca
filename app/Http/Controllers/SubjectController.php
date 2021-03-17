@@ -15,11 +15,9 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        //dd(Auth::user()->id);
         $subjects= Subject::all();
         return view('admin.subjects.index',[
             'subjects' => $subjects,
-            'user' => Auth::user(),
         ]);
     }
 
@@ -30,7 +28,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        $subject = new subject();
+        $subject = new Subject();
         return view('admin.subjects.create',compact('subject'));
     }
 
@@ -44,9 +42,7 @@ class SubjectController extends Controller
     {
       // dd($request->user()->id);
         Subject::create($request->all());
-        return redirect()->route('subjects.index')->with(
-            ['user_creating_now','success'],
-            [1, true]);
+        return redirect()->route('subjects.index')->with('success',true);
     }
 
     /**
@@ -55,7 +51,7 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function show(subject $subject)
+    public function show(Subject $subject)
     {
         return view('admin.subjects.show',compact('subject'));
         
@@ -80,7 +76,7 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, subject $subject)
+    public function update(Request $request, Subject $subject)
     {
         $subject->update($request->all());
         return redirect()->route('subjects.index')->with('success',true);
@@ -93,7 +89,7 @@ class SubjectController extends Controller
      * @param  \App\Subject  $subject
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subject $subject)
+    public function destroy(Subject $subject)
     {
         $subject->delete();
         return redirect()->route('subjects.index')->with('success',true);

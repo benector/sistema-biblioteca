@@ -1,20 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Exemplary;
+use App\Work;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
 
 class ExemplaryController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($work_id)
     {
-        //
+        $exemplaries = DB::table('exemplaries')->where('work_id', '=', $work_id)->get();
+        $results = count($exemplaries);
+        $work = Work::find($work_id);
+        return view('admin.exemplaries.index',compact('exemplaries', 'work', 'results'));
+
     }
 
     /**
@@ -24,7 +32,9 @@ class ExemplaryController extends Controller
      */
     public function create()
     {
-        //
+        $exemplary = new Exemplary();
+        $works = Work::all();
+        return view('admin.exemplaries.create',compact('exemplary', 'works'));
     }
 
     /**
@@ -35,7 +45,9 @@ class ExemplaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // dd($request->user()->id);
+        Exemplary::create($request->all());
+        return redirect()->route('workExemplaries', $request->work_id)->with('success',true);
     }
 
     /**
@@ -46,7 +58,8 @@ class ExemplaryController extends Controller
      */
     public function show(Exemplary $exemplary)
     {
-        //
+        return view('admin.exemplaries.show',compact('exemplary'));
+        
     }
 
     /**
@@ -57,7 +70,9 @@ class ExemplaryController extends Controller
      */
     public function edit(Exemplary $exemplary)
     {
-        //
+        $works = Work::all();
+        return view('admin.exemplaries.edit',compact('exemplary', 'works'));
+        
     }
 
     /**
@@ -67,9 +82,11 @@ class ExemplaryController extends Controller
      * @param  \App\Exemplary  $exemplary
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exemplary $exemplary)
+    public function update(Request $request, exemplary $exemplary)
     {
-        //
+        $exemplary->update($request->all());
+        return redirect()->route('workExemplaries', $request->work_id)->with('success',true);
+
     }
 
     /**
@@ -80,6 +97,8 @@ class ExemplaryController extends Controller
      */
     public function destroy(Exemplary $exemplary)
     {
-        //
+        $work_id = $exemplary->work_id;
+        $exemplary->delete();
+        return redirect()->route('workExemplaries', $work_id)->with('success',true);
     }
 }

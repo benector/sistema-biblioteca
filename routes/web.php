@@ -23,6 +23,24 @@ Route::middleware('auth')->group(function(){
     Route::resource('/courses', 'CourseController');
     Route::resource('/works', 'WorkController');
     Route::resource('/subjects', 'SubjectController');
+    Route::resource('/exemplaries', 'ExemplaryController')->except('index');
+    Route::get('works/{id}/exemplaries', 'ExemplaryController@index')->name('workExemplaries');
+    Route::get('images/{filename}', function ($filename)
+    {
+        $path = storage_path() . '/app/public/' . $filename;
+
+        if(!File::exists($path)) abort(404);
+
+        $file = File::get($path);
+        $type = File::mimeType($path);
+
+        $response = Response::make($file, 200);
+        $response->header("Content-Type", $type);
+
+        return $response;
+    });
+
+
 
 
 });
